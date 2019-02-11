@@ -5,23 +5,6 @@ import "os"
 import "os/exec"
 import "encoding/json"
 import "strings"
-//import "reflect"
-
-type arrival struct{
-		time int
-}
-type stop_time_update struct{
-		stop_time []arrival
-}
-type trip_update struct{
-		trip []stop_time_update
-}
-type entity struct{
-		up []trip_update
-}
-type head struct{
-	ent entity  `json:"entity"`
-}
 
 func main(){
 
@@ -77,17 +60,11 @@ func main(){
 
   	m, ok := ent.([]interface{})
   	fmt.Println(ok)
+  	fmt.Println(len(m))
 
-  	m1, ok1 := m[0].(map[string]interface{})
+  	m1, ok1 := m[400].(map[string]interface{})
   	fmt.Println(ok1)
 
-
-  	//fmt.Println(reflect.TypeOf(ent))
-  	//fmt.Println(reflect.TypeOf(fmt.Sprintf("%v", ent)))
-  	//entstr := "{" + fmt.Sprintf("%v", ent) + "}"
-
-  	//var ent1 map[string]interface{}
-  	//json.Unmarshal([]byte(entstr),&ent1)
 
   	more_keys := make([]string, 0)
   	for more_key := range m1{
