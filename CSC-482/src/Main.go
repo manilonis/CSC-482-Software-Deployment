@@ -5,6 +5,7 @@ import "os"
 import "os/exec"
 import "encoding/json"
 import "strings"
+import "github.com/landonp1203/goUtils/loggly"
 
 func main(){
 
@@ -16,6 +17,8 @@ func main(){
     return
 }
     o := string(out)
+
+    loggly.Info(o)
 
     //fmt.Println(o)
 
@@ -37,14 +40,11 @@ func main(){
         return
     }
 
-    store := head{}
+    var store map[string]interface{}
     err = json.Unmarshal([]byte(o), &store)
 
     fmt.Println(store)
 
-    for i:=0; i < len(store.ent.up); i++{
- 		fmt.Println(i)
-    }
 
     var result map[string]interface{}
 	json.Unmarshal([]byte(o), &result)
@@ -56,7 +56,7 @@ func main(){
 
   	fmt.Println(strings.Join(keys, ","))
 
-  	ent := result["entity"]
+  	/*ent := result["entity"]
 
   	m, ok := ent.([]interface{})
   	fmt.Println(ok)
@@ -71,7 +71,7 @@ func main(){
   		more_keys = append(more_keys, more_key)
   	}
 
-  	fmt.Println(strings.Join(more_keys, ","))
+  	fmt.Println(strings.Join(more_keys, ","))*/
 
 
 }
